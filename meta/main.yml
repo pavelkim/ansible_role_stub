@@ -1,0 +1,13 @@
+galaxy_info:
+  author: Pavel Kim
+  description: Ansible demo role
+  license: GPLv3
+  
+  min_ansible_version: 1.2
+
+  galaxy_tags:
+    - demo
+    - linux
+
+dependencies: []
+

@@ -1,0 +1,27 @@
+- name: Include vars for the content template
+  include_vars:
+    file: content_variables.yml
+
+- name: Print out inventory hostname
+  debug:
+    msg: System {{ inventory_hostname }}
+
+- name: Check uptime
+  shell: /usr/bin/uptime
+  register: result
+
+- name: Render text from a template to a file
+  template:
+    src: content.txt.j2
+    dest: /tmp/content.txt
+
+- name: Render text from a template and put it to a variable
+  set_fact:
+    rendered_content: "{{ lookup('template', 'templates/content.txt.j2') }}"
+
+- name: Print out variables content
+  debug:
+    msg:
+    - "Environment variable HOSTNAME='{{ lookup('env', 'HOSTNAME') }}'"
+    - "Uptime: {{ result.stdout }}"
+    - "Content: {{ rendered_content }}"
