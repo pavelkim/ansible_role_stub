@@ -1,0 +1,34 @@
+name: CI
+
+on: 
+  push:
+    branches: 
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-16.04
+
+    steps:
+    - uses: actions/checkout@v1.0.0
+      with:
+        repository: pavelkim/ansible_role_stub
+        ref: master
+        token: ${{ github.token }}
+
+    - name: Say hello
+      run: echo Hello.
+      
+    - name: Say hello\nhello.
+      run: |
+        echo hello
+        echo hello.
+
+    - name: python-lint
+      uses: CyberZHG/github-action-python-lint@0.0.2
+
+    - name: shellcheck
+      uses: ludeeus/action-shellcheck@0.1.0
+
+
